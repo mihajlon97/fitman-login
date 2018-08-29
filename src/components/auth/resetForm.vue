@@ -84,25 +84,26 @@
                         this.$router.push('/');
                     }
                     if(this.$route.query.token !== undefined) {
-                        localStorage.setItem('token', this.$route.query.token)
+                        window.$cookies.set('token', this.$route.query.token)
                     }
                 });
         },
         methods: {
             onSubmit() {
                 AuthService.changePassword({
-                    token: localStorage.getItem('token'),
+                    token: window.$cookies.get('token'),
                     password: this.password1
                 })
                     .then(response => {
                         console.log(response);
-                        localStorage.removeItem('token');
+
+                        window.$cookies.remove('token');
                         this.$router.push('/');
                     })
             }
         },
         beforeRouteLeave (to, from, next) {
-            localStorage.removeItem('token');
+            window.$cookies.remove('token');
             this.$store.user = null;
             next();
         }

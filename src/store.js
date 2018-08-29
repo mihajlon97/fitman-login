@@ -65,8 +65,8 @@ export default new Vuex.Store({
                     commit('setLoginError', res.data.error);
                   return;
                 }
-              localStorage.setItem('token', res.data.token);
-              localStorage.setItem('role', res.data.data.role);
+                window.$cookies.set('token', res.data.token)
+                window.$cookies.set('role', res.data.data.role)
               commit('authUser', {
                   token: res.data.token,
                   role: res.data.data.role
@@ -81,8 +81,8 @@ export default new Vuex.Store({
             .catch(error => console.log(error))
     },
     tryAutoLogin ({commit}) {
-      const token = localStorage.getItem('token')
-        const role = localStorage.getItem('role')
+        let token = window.$cookies.get('token');
+        let role = window.$cookies.get('role');
       if (!token) {
         return
       }
@@ -94,8 +94,8 @@ export default new Vuex.Store({
     logout ({commit}) {
         commit('clearAuthData')
         commit('setLoginError', null)
-        localStorage.removeItem('token')
-        localStorage.removeItem('role')
+        window.$cookies.remove('token');
+        window.$cookies.remove('role');
         router.push('/signin')
     }
   },
