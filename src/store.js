@@ -62,7 +62,7 @@ export default new Vuex.Store({
             .then(res => {
               console.log(res)
                 if(res.data.error) {
-                    commit('setLoginError', res.data.error)
+                    commit('setLoginError', res.data.error);
                   return;
                 }
               localStorage.setItem('token', res.data.token);
@@ -71,7 +71,12 @@ export default new Vuex.Store({
                   token: res.data.token,
                   role: res.data.data.role
               })
-              router.push('/dashboard');
+                if(res.data.data.role == 'admin') {
+                    window.location.href = 'http://localhost:8000/#/panel/statistics';
+                    return;
+                }
+
+                router.push('/dashboard');
             })
             .catch(error => console.log(error))
     },

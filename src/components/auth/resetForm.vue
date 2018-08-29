@@ -103,7 +103,6 @@
         },
         beforeRouteLeave (to, from, next) {
             localStorage.removeItem('token');
-            console.log('sdadasdasdasdasdasd');
             this.$store.user = null;
             next();
         }
