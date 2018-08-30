@@ -65,8 +65,8 @@ export default new Vuex.Store({
                     commit('setLoginError', res.data.error);
                   return;
                 }
-                window.$cookies.set('token', res.data.token, 60) // !!!
-                window.$cookies.set('role', res.data.data.role, 60) // !!!
+                window.$cookies.set('token', res.data.token, 5) // !!!
+                window.$cookies.set('role', res.data.data.role, 5) // !!!
               commit('authUser', {
                   token: res.data.token,
                   role: res.data.data.role
