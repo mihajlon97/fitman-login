@@ -72,7 +72,8 @@ export default new Vuex.Store({
                   role: res.data.data.role
               })
                 if(res.data.data.role == 'admin') {
-                    window.location.href = 'http://localhost:8000/#/panel/statistics';
+                    window.location.href = 'http://localhost:8000/panel/statistics';
+                    dispatch('logout');
                     return;
                 }
 
@@ -81,7 +82,8 @@ export default new Vuex.Store({
             .catch(error => console.log(error))
     },
     tryAutoLogin ({commit}) {
-        let token = window.$cookies.get('token');
+        /*let token = window.$cookies.get('token');
+        console.log(window.$cookies.get('token'))
         let role = window.$cookies.get('role');
       if (!token) {
         return
@@ -89,13 +91,11 @@ export default new Vuex.Store({
       commit('authUser', {
           token: token,
           role: role
-      })
+      })*/
     },
     logout ({commit}) {
         commit('clearAuthData')
         commit('setLoginError', null)
-        window.$cookies.remove('token');
-        window.$cookies.remove('role');
         router.push('/signin')
     }
   },

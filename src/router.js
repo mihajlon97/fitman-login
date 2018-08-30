@@ -45,12 +45,12 @@ router.beforeEach((to, from, next) => {
     const publicPages = ['/', '/reset-form', '/reset'];
 
     const authRequired = !publicPages.includes(to.path);
-    const loggedIn = !!window.$cookies.get('token');
-    if(loggedIn && !authRequired && !to.query.logout) {
+    //const loggedIn = !!window.$cookies.get('token');
+    /*if(loggedIn && !authRequired && !to.query.logout) {
         return next('/dashboard');
-    }
+    }*/
 
-    if (authRequired && !loggedIn) {
+    if (authRequired/* && !loggedIn*/) {
         return next('/');
     }
 
