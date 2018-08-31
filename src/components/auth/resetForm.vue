@@ -18,8 +18,8 @@
                                     v-model="password1"
                                     @blur="$v.password1.$touch()"
                             >
-                            <p class="error" v-if="!$v.password1.required">Please provide a password.</p>
-                            <p class="error" v-if="!$v.password1.minLen">Password must be at least 6 characters long.</p>
+                            <p class="error" v-if="isSubmitted && !$v.password1.required">Please provide a password.</p>
+                            <p class="error" v-if="isSubmitted && !$v.password1.minLen">Password must be at least 6 characters long.</p>
                         </div>
                         <div class="group">
                             <label for="pass2" class="label" :class="{invalid: $v.password2.$error}">Confirm password</label>
@@ -31,13 +31,13 @@
                                     v-model="password2"
                                     @blur="$v.password2.$touch()"
                             >
-                            <p class="error" v-if="!$v.password2.required">Please provide a password.</p>
-                            <p class="error" v-if="!$v.password2.minLen">Password must be at least 6 characters long.</p>
+                            <p class="error" v-if="isSubmitted && !$v.password2.required">Please provide a password.</p>
+                            <p class="error" v-if="isSubmitted && !$v.password2.minLen">Password must be at least 6 characters long.</p>
                         </div>
                         <div class="group" @click.prevent="onSubmit">
-                            <input type="submit" class="button" :class="{disabled: $v.$invalid}" value="Change password" :disabled="$v.$invalid || password1 !== password2">
+                            <input type="submit" class="button" value="Change password"><!--:class="{disabled: $v.$invalid}"  :disabled="$v.$invalid || password1 !== password2"-->
                         </div>
-                        <p class="error" v-if="password1 !== password2">Passwords are not same!</p>
+                        <p class="error" v-if="isSubmitted && (password1 !== password2)">Passwords are not same!</p>
                         <div class="hr"></div>
                         <div class="foot-lnk">
                             <p style="margin-bottom: -7px"><b>Note: </b></p>
@@ -57,6 +57,7 @@
     export default {
         data() {
             return {
+                isSubmitted: false,
                 password1: '',
                 password2: ''
             };
@@ -90,6 +91,10 @@
         },
         methods: {
             onSubmit() {
+                this.isSubmitted = true;
+                if(this.$v.$invalid || (this.password1 !== this.password2)) {
+                    return;
+                }
                 AuthService.changePassword({
                     token: window.$cookies.get('token'),
                     password: this.password1

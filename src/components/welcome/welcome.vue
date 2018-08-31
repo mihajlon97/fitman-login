@@ -17,8 +17,8 @@
                                 v-model="username"
                                 @blur="$v.username.$touch()"
                         >
-                        <p class="error" v-if="!$v.username.required">Please provide a username.</p>
-                        <p class="error" v-if="!$v.username.minLen">Username must be at least 6 characters long.</p>
+                        <p class="error" v-if="isSubmitted && !$v.username.required">Please provide a username.</p>
+                        <p class="error" v-if="isSubmitted && !$v.username.minLen">Username must be at least 6 characters long.</p>
                         <!--<div style="color: #fff">{{$v}}</div>-->
                     </div>
                     <div class="group">
@@ -31,17 +31,18 @@
                                 v-model="password"
                                 @blur="$v.password.$touch()"
                         >
-                        <p class="error" v-if="!$v.password.required">Please provide a password.</p>
-                        <p class="error" v-if="!$v.password.minLen">Password must be at least 6 characters long.</p>
+                        <p class="error" v-if="isSubmitted && !$v.password.required">Please provide a password.</p>
+                        <p class="error" v-if="isSubmitted && !$v.password.minLen">Password must be at least 6 characters long.</p>
                     </div>
                     <!--<div class="group">
                         <input id="check" type="checkbox" class="check" checked>
                         <label for="check"><span class="icon"></span> Keep me Signed in</label>
                     </div>-->
                     <div class="group" @click.prevent="onSubmit">
-                        <input type="submit" class="button" :class="{disabled: $v.$invalid}" value="Sign In" :disabled="$v.$invalid">
+                        <input type="submit" class="button" value="Sign In"><!--:class="{disabled: $v.$invalid}"-->  <!--:disabled="$v.$invalid"-->
                     </div>
                     <p class="error" v-if="$store.getters.getLoginError">{{$store.getters.getLoginError}}</p>
+                    <!--<p style="color: #fff">{{$v}}</p>-->
                     <div class="hr"></div>
                     <div class="foot-lnk">
                         <router-link to="/reset-form">Forgot Password?</router-link>
@@ -83,7 +84,8 @@
         data() {
             return {
                 username: '',
-                password: ''
+                password: '',
+                isSubmitted: false
             }
         },
         validations: {
@@ -98,6 +100,10 @@
         },
         methods: {
             onSubmit () {
+                this.isSubmitted = true;
+                if(this.$v.$invalid) {
+                    return;
+                }
                 const formData = {
                     username: this.username,
                     password: this.password
