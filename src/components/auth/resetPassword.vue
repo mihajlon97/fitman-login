@@ -16,12 +16,12 @@
                                     v-model="email"
                                     @blur="$v.email.$touch()"
                             >
-                            <p class="error" v-if="!$v.email.required">Please provide an email.</p>
-                            <p class="error" v-if="!$v.email.email">Email is not valid.</p>
+                            <p class="error" v-if="isSubmitted && !$v.email.required">Please provide an email.</p>
+                            <p class="error" v-if="isSubmitted && !$v.email.email">Email is not valid.</p>
                             <!--<div style="color: #fff">{{$v}}</div>-->
                         </div>
                         <div class="group" @click.prevent="onSubmit">
-                            <input type="submit" class="button" :class="{disabled: $v.$invalid}" value="Send a reset email" :disabled="$v.$invalid">
+                            <input type="submit" class="button" value="Send a reset email"><!--:class="{disabled: $v.$invalid}" :disabled="$v.$invalid"-->
                         </div>
                         <p class="success" v-if="!first && isSent">{{messageSuccess}}</p>
                         <p class="error" v-if="!first && !isSent">{{messageFail}}</p>
@@ -47,7 +47,8 @@
                 isSent: false,
                 messageFail: '',
                 messageSuccess: '',
-                first: true
+                first: true,
+                isSubmitted: false
             };
         },
         validations: {
@@ -58,6 +59,10 @@
         },
         methods: {
             onSubmit () {
+                this.isSubmitted = true;
+                if(this.$v.$invalid) {
+                    return;
+                }
                 this.first = false;
                 console.log(this.email)
                 AuthService.sendResetEmail({

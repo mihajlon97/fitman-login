@@ -50,6 +50,13 @@ router.beforeEach((to, from, next) => {
         return next('/dashboard');
     }*/
 
+    if(!window.$cookies.get('logout') && window.$cookies.get('token')) {
+        window.location.href = 'http://localhost:8000/panel/statistics';
+        return;
+    }
+
+    window.$cookies.remove('logout', '/'); // , domain
+
     if (authRequired/* && !loggedIn*/) {
         return next('/');
     }
