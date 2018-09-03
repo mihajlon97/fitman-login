@@ -5,7 +5,7 @@ export default {
     return Api().post('/register', data)
   },
   login (data) {
-    return Api().post('/admin/login', data)
+    return Api().post('/account/login', data)
   },
   sendResetEmail(data) {
       console.log(data)
@@ -19,7 +19,7 @@ export default {
     },
     changePassword(data) {
         console.log(data)
-        return Api().put('/admin/resetPassword', {password: data.password}, {
+        return Api().put('/account/resetPassword', {password: data.password}, {
             headers: { Authorization: "Bearer " + data.token }
         })
     }

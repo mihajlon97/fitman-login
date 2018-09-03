@@ -69,11 +69,18 @@ export default new Vuex.Store({
                   token: res.data.token,
                   role: res.data.data.role
               })
-                if(res.data.data.role === 'admin') {
+                if(res.data.data.role === 'customer') {
                     window.$cookies.set('token', res.data.token, Infinity) // !!!
                     window.$cookies.set('role', res.data.data.role, Infinity) // !!!
                     window.location.href = 'http://localhost:8000/panel/statistics';
                     dispatch('logout');
+                    return;
+                } else if(res.data.data.role === 'admin') {
+                    window.$cookies.set('token', res.data.token, Infinity) // !!!
+                    window.$cookies.set('role', res.data.data.role, Infinity) // !!!
+                    // window.location.href = 'http://localhost:3333/panel/statistics';
+                    // dispatch('logout');
+                    alert('There is no admin app yet!');
                     return;
                 }
 

@@ -16,6 +16,7 @@
                                 class="input"
                                 v-model="username"
                                 @blur="$v.username.$touch()"
+                                @keyup.enter="onSubmit"
                         >
                         <p class="error" v-if="isSubmitted && !$v.username.required">Please provide a username.</p>
                         <p class="error" v-if="isSubmitted && !$v.username.minLen">Username must be at least 6 characters long.</p>
@@ -30,6 +31,7 @@
                                 data-type="password"
                                 v-model="password"
                                 @blur="$v.password.$touch()"
+                                @keyup.enter="onSubmit"
                         >
                         <p class="error" v-if="isSubmitted && !$v.password.required">Please provide a password.</p>
                         <p class="error" v-if="isSubmitted && !$v.password.minLen">Password must be at least 6 characters long.</p>
