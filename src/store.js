@@ -65,19 +65,21 @@ export default new Vuex.Store({
                     commit('setLoginError', res.data.error);
                   return;
                 }
-                window.$cookies.set('token', res.data.token, Infinity) // !!!
-                window.$cookies.set('role', res.data.data.role, Infinity) // !!!
               commit('authUser', {
                   token: res.data.token,
                   role: res.data.data.role
               })
-                if(res.data.data.role == 'admin') {
+                alert(res.data.data.role === 'admin')
+                if(res.data.data.role === 'admin') {
+                    window.$cookies.set('token', res.data.token, Infinity) // !!!
+                    window.$cookies.set('role', res.data.data.role, Infinity) // !!!
+                    alert('here')
                     window.location.href = 'http://localhost:8000/panel/statistics';
                     dispatch('logout');
                     return;
                 }
 
-                router.push('/dashboard');
+                router.push('/');
             })
             .catch(error => console.log(error))
     },
