@@ -1,14 +1,9 @@
-# Admin Authentification App
+# Fitman Login App
 
-## Build Setup
-
+## Run Setup
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:9999
 npm run dev
-
-# build for production with minification
-npm run build
-```
