@@ -51,13 +51,13 @@ export default new Vuex.Store({
                     window.$cookies.set('token', res.data.token, Infinity)
                     window.$cookies.set('role', res.data.data.role, Infinity)
                     alert('Login Success! There is no trainer app yet!');
-                    // window.location.href = 'http://localhost:8000/statistics';
+                    // window.location.href = 'http://localhost:2222/';
                     // dispatch('logout');
                     return;
                 } else if(res.data.data.role === 'admin') {
                     window.$cookies.set('token', res.data.token, Infinity)
                     window.$cookies.set('role', res.data.data.role, Infinity)
-                    // window.location.href = 'http://localhost:3333/statistics';
+                    // window.location.href = 'http://localhost:3333/';
                     // dispatch('logout');
                     alert('Login Success! There is no admin app yet!');
                     return;

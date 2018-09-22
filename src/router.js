@@ -29,7 +29,10 @@ router.beforeEach((to, from, next) => {
     const authRequired = !publicPages.includes(to.path);
 
     if(!window.$cookies.get('logout') && window.$cookies.get('token')) {
-        window.location.href = 'http://localhost:8000/statistics';
+        alert('Cookie for success login exists! Now deleted for testing!')
+        window.$cookies.remove('token', '/');
+        // window.location.href = 'http://localhost:3333/';
+        window.location.reload();
         return;
     }
 
