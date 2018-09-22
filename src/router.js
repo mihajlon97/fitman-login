@@ -51,7 +51,7 @@ router.beforeEach((to, from, next) => {
     }*/
 
     if(!window.$cookies.get('logout') && window.$cookies.get('token')) {
-        window.location.href = 'http://localhost:8000/';
+        window.location.href = 'http://localhost:8000/statistics';
         return;
     }
 
