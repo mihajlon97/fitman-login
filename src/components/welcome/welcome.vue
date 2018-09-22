@@ -17,7 +17,6 @@
                         >
                         <p class="error" v-if="isSubmitted && !$v.username.required">Please provide a username.</p>
                         <p class="error" v-if="isSubmitted && !$v.username.minLen">Username must be at least 6 characters long.</p>
-                        <!--<div style="color: #fff">{{$v}}</div>-->
                     </div>
                     <div class="group">
                         <label for="pass" class="label" :class="{invalid: $v.password.$error}">Password</label>
@@ -41,7 +40,6 @@
                         <input type="submit" class="button" value="Sign In"><!--:class="{disabled: $v.$invalid}"-->  <!--:disabled="$v.$invalid"-->
                     </div>
                     <p class="error" v-if="$store.getters.getLoginError">{{$store.getters.getLoginError}}</p>
-                    <!--<p style="color: #fff">{{$v}}</p>-->
                     <div class="hr"></div>
                     <div class="foot-lnk">
                         <router-link to="/reset-form">Forgot Password?</router-link>
