@@ -1,7 +1,6 @@
 <template>
     <div class="resetPassword">
         <div class="login-wrap">
-            <img id="logo" src="https://res.cloudinary.com/werbifi/image/upload/v1531155187/logo-preloader.png" alt="werbifi">
             <div class="login-html">
                 <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Reset Password</label>
                 <input id="tab-2" type="text" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
@@ -103,7 +102,7 @@
         max-width:525px;
         min-height:850px;
         position:relative;
-        background:url("http://res.cloudinary.com/werbifi/image/upload/v1534522841/intro-bg.jpg") no-repeat center;
+        background:url("https://res.cloudinary.com/werbifi/image/upload/b_rgb:090000,o_31/v1537630722/WhatsApp_Image_2018-09-13_at_23.58.42.jpg") no-repeat center;
         box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
     }
     .login-html{

@@ -47,18 +47,19 @@ export default new Vuex.Store({
                   token: res.data.token,
                   role: res.data.data.role
               })
-                if(res.data.data.role === 'customer') {
-                    window.$cookies.set('token', res.data.token, Infinity) // !!!
-                    window.$cookies.set('role', res.data.data.role, Infinity) // !!!
-                    window.location.href = 'http://localhost:8000/statistics';
-                    dispatch('logout');
+                if(res.data.data.role === 'trainer') {
+                    window.$cookies.set('token', res.data.token, Infinity)
+                    window.$cookies.set('role', res.data.data.role, Infinity)
+                    alert('Login Success! There is no trainer app yet!');
+                    // window.location.href = 'http://localhost:8000/statistics';
+                    // dispatch('logout');
                     return;
                 } else if(res.data.data.role === 'admin') {
-                    window.$cookies.set('token', res.data.token, Infinity) // !!!
-                    window.$cookies.set('role', res.data.data.role, Infinity) // !!!
+                    window.$cookies.set('token', res.data.token, Infinity)
+                    window.$cookies.set('role', res.data.data.role, Infinity)
                     // window.location.href = 'http://localhost:3333/statistics';
                     // dispatch('logout');
-                    alert('There is no admin app yet!');
+                    alert('Login Success! There is no admin app yet!');
                     return;
                 }
 

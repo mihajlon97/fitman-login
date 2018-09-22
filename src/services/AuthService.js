@@ -2,10 +2,10 @@ import Api from './Api'
 
 export default {
   register (data) {
-    return Api().post('/register', data)
+    // return Api().post('/register', data)
   },
   login (data) {
-    return Api().post('/account/login', data)
+    return Api().post('/user/login', data)
   },
   sendResetEmail(data) {
       console.log(data)

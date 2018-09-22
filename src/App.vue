@@ -16,6 +16,6 @@
   body, html {
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-image: linear-gradient(90deg, #000 0%, #3aa6fe 100%);
+    background-image: linear-gradient(90deg, #000 0%, #9c7a00 100%);
   }
 </style>
